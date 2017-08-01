@@ -4,7 +4,9 @@ export default class LoginForm extends Component{
     render(){
         return (
             <aside className={this.props.asideClass}>
-            </aside>    
+                <canvas id="text" width="500" height="100"></canvas>
+                <canvas id="stage" width="500" height="100"></canvas>
+            </aside>
         )
     }
 }

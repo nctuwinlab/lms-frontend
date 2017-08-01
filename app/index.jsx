@@ -20,6 +20,7 @@ const store = createStore(
             asideStatus: {
                 opened: false,
                 asideClass: '',
+                bg: null
             }
         }
 );

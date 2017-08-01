@@ -1,4 +1,5 @@
 import { ASIDE_TOGGLE } from '../Actions/action';
+import LoginFormBg from '../Components/LoginFormBg';
 
 function asideToggle(state = {}, action){
     switch(action.type){
@@ -12,6 +13,7 @@ function asideToggle(state = {}, action){
                 return {
                     opened:  true,
                     asideClass: 'form-out',
+                    bg: state.bg ? state.bg : new LoginFormBg()
                 }
             }
             break;

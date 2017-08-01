@@ -11,6 +11,9 @@
   "author": "Ju6e4tWwW",
   "license": "ISC",
   "dependencies": {
+    "createjs-cmd": "^0.1.0",
+    "gasp": "0.0.2",
+    "gsap": "^1.20.2",
     "jquery": "^3.2.1",
     "materialize-css": "^0.100.1",
     "react": "^15.6.1",
