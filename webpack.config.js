@@ -34,9 +34,21 @@ let config = {
                 test: /\.(sass|scss)$/,
                 exclude: [/node_modules/],
                 use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                exclude: [/node_modules/],
+                use: ['file-loader'],
             }
         ]
     },
+    plugins: [
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            'window.jQuery': 'jquery'
+        })
+    ],
     devServer: {
         contentBase: __dirname,
         compress: true,

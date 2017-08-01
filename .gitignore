@@ -58,4 +58,6 @@ typings/
 .env
 
 build/
-
+.woff
+.woff2
+app/materialize-css/

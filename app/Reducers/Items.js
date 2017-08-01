@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { CLICK } from '../Actions/action';
 
 function items(state = [], action){
@@ -17,8 +16,4 @@ function items(state = [], action){
     }
 }
 
-const events = combineReducers({
-    items, 
-});
-
-export default events;
+export default items;

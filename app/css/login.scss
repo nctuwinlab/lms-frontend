@@ -1,0 +1,26 @@
+.login-btn{
+    position: fixed;
+    right: 10px;
+}
+
+aside{
+    position: fixed;
+    width: 0;
+    height: 0;
+    right: 0;
+    top: 0;
+    background-color: black;
+    
+    &.form-in{
+        transition: all 1s ease 0s;
+        width: 0;
+        height: 0;
+    }
+    
+    &.form-out{
+        transition: all 1s ease 0s;
+        width: 100vw;
+        height: 100vh;
+    }
+
+}
