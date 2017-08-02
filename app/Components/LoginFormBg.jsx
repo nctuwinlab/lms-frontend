@@ -39,7 +39,7 @@ class LoginFormBg extends Component{
     StageInit(){
         let textStage = new createjs.Stage("loginTitle");
         textStage.canvas.width = window.innerWidth;
-        textStage.canvas.height = 200;
+        textStage.canvas.height = 300;
         this.textStage = textStage;
 
         let stage = new createjs.Stage("stage");
@@ -58,7 +58,15 @@ class LoginFormBg extends Component{
     CirclesInit(){
         this.circles = [];
         let colors = ['#B2949D', '#FFF578', '#FF5F8D', '#37A9CC', '#188EB2'];
-        for(let i=0; i<600; i++) {
+        let circleNum = 0;
+        if(window.innerWidth >= 1600){
+            circleNum = 1200;
+        } else if(window.innerWidth < 1600 && window.innerWidth > 1200){
+            circleNum = 800;
+        } else {
+            circleNum = 600;
+        }
+        for(let i=0; i<circleNum; i++) {
             let circle = new createjs.Shape();
             let r = 7;
             let x = window.innerWidth*Math.random();
@@ -79,7 +87,7 @@ class LoginFormBg extends Component{
     CreateText() {
         //let fontSize = 860/(t.length);
         //if (fontSize > 160) fontSize = 160;
-        let fontSize = 140;
+        let fontSize = window.innerWidth / 6;
         let { text, textStage } = this;
         text.text = 'LOGIN';
         text.font = "900 "+fontSize+"px 'Source Sans Pro'";
@@ -90,14 +98,14 @@ class LoginFormBg extends Component{
         textStage.update();
 
         let ctx = document.getElementById('loginTitle').getContext('2d');
-        let pix = ctx.getImageData(0,0,window.innerWidth,200).data;
+        let pix = ctx.getImageData(0,0,window.innerWidth,300).data;
         this.textPixels = [];
         for (let i = pix.length-1; i >= 0; i -= 4) {
             if (pix[i] != 0) {
                 let x = ((i+1) / 4) % window.innerWidth;
                 let y = Math.floor(Math.floor((i+1)/window.innerWidth)/4);
 
-                if((x && x%8 == 0) && (y && y%8 == 0)) 
+                if((x && x%10 == 0) && (y && y%10 == 0)) 
                     this.textPixels.push({x: x, y: y});
             }
         }
@@ -108,7 +116,7 @@ class LoginFormBg extends Component{
         let { textPixels, circles } = this;
         for(let i= 0, l=textPixels.length; i<l; i++) {
             circles[i].originX = textPixels[i].x;
-            circles[i].originY = (window.innerHeight-150)/2 + textPixels[i].y;
+            circles[i].originY = (window.innerHeight-300)/2 + textPixels[i].y;
             this.BeforeLoginTween(circles[i]);
         }
         if(textPixels.length < circles.length) {
@@ -152,19 +160,23 @@ class LoginFormBg extends Component{
                 ease:   Expo.easeIn,
                 alpha:  1, 
                 radius: 5, 
-                scaleX: 0.4, 
-                scaleY: 0.4, 
+                scaleX: 0.5, 
+                scaleY: 0.5, 
             }
         );
-
+        let offsetY = (window.innerWidth - 300)/2;
+        c.originY += (offsetY - c.originY)/5;
         c.originY = c.originY - window.innerHeight/3;
-        
+        c.originX += (window.innerWidth/2 - c.originX)/5;
+
         c.tween = TweenLite.to(
             c, 
             0.7, 
             {   
                 x:      c.originX, 
                 y:      c.originY,
+                scaleX: 0.4, 
+                scaleY: 0.4, 
                 onComplete: () => {
                     this.props.asideOpenEnd();
                 }
@@ -182,7 +194,7 @@ class LoginFormBg extends Component{
         }
         if(textPixels.length < circles.length) {
             for(let j = textPixels.length; j<circles.length; j++) {
-                circles[j].tween = TweenLite.to(circles[j], 0.4, {alpha: 1});
+                circles[j].tween = TweenLite.to(circles[j], 0.4, {alpha: 0.2 + Math.random()*0.5});
             }
         }
     }

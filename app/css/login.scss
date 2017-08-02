@@ -26,5 +26,19 @@ aside{
     canvas{
         position: absolute;
     }
-
+    
+    form{
+        position: absolute;
+        display: inline-flex;
+        flex-wrap: wrap;
+        margin: auto;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        transform: translate(-50%, -50%);
+        
+        .login-input{
+            width: 50%;
+        }
+    }
 }

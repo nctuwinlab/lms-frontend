@@ -5,7 +5,15 @@ import { login } from '../Actions/action';
 class LoginTable extends Component{
     render(){
         return (
-            <button onClick={this.props.login}>login</button>
+            <form>
+                <div className="login-input">
+                    <input  />
+                </div>
+                <div className="login-input">
+                    <input  />
+                </div>
+                <button onClick={this.props.login}>login</button>
+            </form>
         )
     }
 }
@@ -17,7 +25,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: () => {
+        login: (e) => {
+            e.preventDefault();
             dispatch(login());
         }
     }
