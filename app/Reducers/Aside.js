@@ -1,21 +1,27 @@
-import { ASIDE_TOGGLE } from '../Actions/action';
-import LoginFormBg from '../Components/LoginFormBg';
+import { ASIDE_TOGGLE, ASIDE_OPEN_END } from '../Actions/action';
 
-function asideToggle(state = {}, action){
+function asideStatus(state = {}, action){
     switch(action.type){
         case ASIDE_TOGGLE:
             if(state.opened){
-                return {
+                return Object.assign({}, state, {
                     opened: false,
-                    asideClass: 'form-in'
-                }
+                    asideClass: 'form-in',
+                })
             } else {
-                return {
+                return Object.assign({}, state, {
                     opened:  true,
                     asideClass: 'form-out',
-                    bg: state.bg ? state.bg : new LoginFormBg()
-                }
+                    firstOpened: true
+                })
             }
+            break;
+        case ASIDE_OPEN_END:
+            if(state.firstOpenedAnime)
+                return state;
+            return Object.assign({}, state, {
+                firstOpenedAnime: true
+            })
             break;
         default:
             return state;
@@ -23,5 +29,5 @@ function asideToggle(state = {}, action){
     }
 }
 
-export default asideToggle;
+export default asideStatus;
 

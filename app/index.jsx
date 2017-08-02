@@ -20,8 +20,10 @@ const store = createStore(
             asideStatus: {
                 opened: false,
                 asideClass: '',
-                bg: null
-            }
+                firstOpened: false,
+                firstOpenedAnime: false,
+            },
+            isLogin: false,
         }
 );
 

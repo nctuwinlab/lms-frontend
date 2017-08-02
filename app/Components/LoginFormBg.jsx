@@ -1,23 +1,39 @@
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { asideOpenEnd } from '../Actions/action';
+
 import createjs from 'createjs-cmd';
 import { TweenLite } from 'gsap';
 
-export default class LoginFormBg{
-    constructor(){
-        setTimeout(
-            () => this.init(),
-        1000);
+class LoginFormBg extends Component{
+    render(){
+        return (
+            <div>
+                <canvas id="stage" ref={(d) => {this.stageDOM = d}}></canvas>
+                <canvas id="loginTitle"></canvas>
+                { this.props.isLogin ? <canvas id="loginUser"></canvas>:null }
+            </div>
+        )
     }
 
+    componentWillUpdate(nextProps, nextState){
+        console.log('update');
+        this.AfterLogin();
+    }
 
-    async init(){
-        this.StageInit();
-        this.CirclesInit();
-        this.TextInit();
-        this.animate();
-        await this.BeforeLogin();
-        setTimeout(
-            () => this.createText(),
-        1000);
+    componentDidMount(){
+        console.log('mount');
+        setTimeout( async () => {
+            this.StageInit();
+            this.CirclesInit();
+            this.TextInit();
+            this.animate();
+            await this.BeforeLogin();
+            setTimeout(
+                () => this.CreateText(),
+            1000);
+
+        }, 1000);
     }
 
     StageInit(){
@@ -60,7 +76,7 @@ export default class LoginFormBg{
         }
     }
 
-    createText() {
+    CreateText() {
         //let fontSize = 860/(t.length);
         //if (fontSize > 160) fontSize = 160;
         let fontSize = 140;
@@ -85,10 +101,10 @@ export default class LoginFormBg{
                     this.textPixels.push({x: x, y: y});
             }
         }
-        this.formText();
+        this.FormText();
     }
 
-    formText(){
+    FormText(){
         let { textPixels, circles } = this;
         for(let i= 0, l=textPixels.length; i<l; i++) {
             circles[i].originX = textPixels[i].x;
@@ -105,87 +121,6 @@ export default class LoginFormBg{
     animate(){
         this.stage.update();
         requestAnimationFrame(this.animate.bind(this));
-    }
-
-    explode() {
-        let { circles, textPixels } = this;
-        for(let i= 0, l=textPixels.length; i<l; i++) {
-            TweenCircle(circles[i], 'out');
-        }
-        if(textPixels.length < circles.length) {
-            for(let j = textPixels.length; j<circles.length; j++) {
-                circles[j].tween = TweenLite.to(circles[j], 0.4, {alpha: 1});
-            }
-        }
-    }
-    
-    TweenCircle(c, dir){
-        if(c.tween) c.tween.kill();
-        if(dir == 'in'){
-            c.tween = TweenLite.to(
-                c, 
-                0.7, 
-                {   
-                    x:      c.originX, 
-                    y:      c.originY, 
-                    ease:   Expo.easeIn,
-                    alpha:  1, 
-                    radius: 5, 
-                    scaleX: 0.4, 
-                    scaleY: 0.4, 
-                    onComplete: () => {
-                        c.movement = 'jiggle';
-                        this.TweenCircle(c);
-                    }
-                }
-            );
-        } else if(dir == 'out'){
-            c.tween = TweenLite.to(
-                c, 
-                0.8, 
-                {   
-                    x:      window.innerWidth*Math.random(), 
-                    y:      window.innerHeight*Math.random(), 
-                    ease:   Quad.easeInOut, 
-                    alpha:  0.2 + Math.random()*0.5, 
-                    scaleX: 1, 
-                    scaleY: 1, 
-                    onComplete: () => {
-                        c.movement = 'float';
-                        this.TweenCircle(c);
-                    }
-                }
-            );
-        } else {
-            if(c.movement == 'float'){
-                c.tween = TweenLite.to(
-                    c, 
-                    5 + Math.random()*3.5, 
-                    {
-                        x:     c.x + -100+Math.random()*200, 
-                        y:     c.y + -100+Math.random()*200, 
-                        ease:  Quad.easeInOut, 
-                        alpha: 0.2 + Math.random()*0.5,
-                        onComplete: () => {
-                            this.TweenCircle(c);
-                        }
-                    }
-                );
-            } else {
-                c.tween = TweenLite.to(
-                    c, 
-                    0.05, 
-                    {
-                        x:    c.originX + Math.random()*3, 
-                        y:    c.originY + Math.random()*3, 
-                        ease: Quad.easeInOut,
-                        onComplete: () => {
-                            this.TweenCircle(c);
-                        }
-                    }
-                );
-            }
-        }
     }
 
     BeforeLogin(){
@@ -229,9 +164,80 @@ export default class LoginFormBg{
             0.7, 
             {   
                 x:      c.originX, 
-                y:      c.originY, 
+                y:      c.originY,
+                onComplete: () => {
+                    this.props.asideOpenEnd();
+                }
             }
         ).delay(1.2);
     }
+    
+    AfterLogin() {
+        let { circles, textPixels } = this;
+        for(let i= 0, l=textPixels.length; i<l; i++) {
+            this.AfterLoginTween(circles[i]);
+        }
+        for(let i=textPixels.length; i<circles.length; i++){
+            this.CircleFloating(circles[i]);
+        }
+        if(textPixels.length < circles.length) {
+            for(let j = textPixels.length; j<circles.length; j++) {
+                circles[j].tween = TweenLite.to(circles[j], 0.4, {alpha: 1});
+            }
+        }
+    }
+
+    AfterLoginTween(c){
+        c.tween = TweenLite.to(
+            c, 
+            0.8, 
+            {   
+                x:      window.innerWidth*Math.random(), 
+                y:      window.innerHeight*Math.random(), 
+                ease:   Quad.easeInOut, 
+                alpha:  0.2 + Math.random()*0.5, 
+                scaleX: 1, 
+                scaleY: 1, 
+                onComplete: () => {
+                    this.CircleFloating(c);
+                }
+            }
+        );
+    }
+
+    CircleFloating(c){
+        c.tween = TweenLite.to(
+            c, 
+            5 + Math.random()*3.5, 
+            {
+                x:     c.x + -100+Math.random()*200, 
+                y:     c.y + -100+Math.random()*200, 
+                ease:  Quad.easeInOut, 
+                alpha: 0.2 + Math.random()*0.5,
+                onComplete: () => {
+                    this.CircleFloating(c);
+                }
+            }
+        );
+    }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLogin: state.isLogin
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        asideOpenEnd: () => {
+            dispatch(asideOpenEnd());
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginFormBg);
 
