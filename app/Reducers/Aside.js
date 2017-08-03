@@ -1,4 +1,11 @@
-import { ASIDE_TOGGLE, ASIDE_OPEN_END } from '../Actions/action';
+import { 
+    ASIDE_TOGGLE, 
+    ASIDE_OPEN_END, 
+    BORDER_IN, 
+    BORDER_OUT,
+    FORM_IN,
+    FORM_OUT
+} from '../Actions/action';
 
 function asideStatus(state = {}, action){
     switch(action.type){
@@ -21,6 +28,34 @@ function asideStatus(state = {}, action){
                 return state;
             return Object.assign({}, state, {
                 firstOpenedAnime: true
+            })
+            break;
+        case BORDER_IN:
+            return Object.assign({}, state, {
+                borderClass: action.pos.map(p => {
+                    return `login-input-border-${p} login-input-border in`;
+                })
+            })
+            break;
+        case BORDER_OUT:
+            return Object.assign({}, state, {
+                borderClass: action.pos.map(p => {
+                    return `login-input-border-${p} login-input-border`;
+                })
+            })
+            break;
+        case FORM_IN:
+            return Object.assign({}, state, {
+                maskClass: 'mask in',
+                labelClass: 'in',
+                inputMaskClass: 'input-mask in',
+            })
+            break;
+        case FORM_OUT:
+            return Object.assign({}, state, {
+                maskClass: 'mask',
+                labelClass: '',
+                inputMaskClass: 'input-mask'
             })
             break;
         default:

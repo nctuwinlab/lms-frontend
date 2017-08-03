@@ -22,6 +22,12 @@ const store = createStore(
                 asideClass: '',
                 firstOpened: false,
                 firstOpenedAnime: false,
+                borderClass: ['left', 'top', 'right', 'bottom', 'middle'].map( p => {
+                    return `login-input-border-${p} login-input-border`;
+                }),
+                maskClass: 'mask',
+                labelClass: '',
+                inputMaskClass: 'input-mask'
             },
             isLogin: false,
         }
