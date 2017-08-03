@@ -6,8 +6,6 @@ import { Router, Route } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 
-import './materialize-css/js/materialize.min.js';
-import './materialize-css/css/materialize.min.css';
 import './css/index.scss';
 
 import App from './Containers/App.jsx';
