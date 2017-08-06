@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { asideOpenEnd } from '../Actions/action';
+import { asideOpenEnd } from '../../Actions/action';
 
 import createjs from 'createjs-cmd';
 import { TweenLite } from 'gsap';

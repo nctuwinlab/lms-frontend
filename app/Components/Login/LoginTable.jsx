@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { login, pending, border, form } from '../Actions/action';
+import { login, pending, border, form } from '../../Actions/action';
 
 class LoginTable extends Component{
     

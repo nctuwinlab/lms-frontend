@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { clickEvt, asideToggle } from '../Actions/action'
 
-import List from '../Components/List.jsx';
-import LoginForm from '../Components/LoginForm.jsx';
+import LoginForm from './Login/LoginForm.jsx';
 
 class App extends Component{
     render(){
@@ -16,7 +15,6 @@ class App extends Component{
         } = this.props;
         return (
             <div>
-                <List items={items}/>
                 <LoginForm />
                 <button className="btn-floating btn-large waves-effect waves-light red login-btn" 
                     onClick={asideToggle}>click</button>
