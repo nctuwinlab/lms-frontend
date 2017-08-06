@@ -8,7 +8,7 @@ import { createBrowserHistory } from 'history';
 
 import './css/index.scss';
 
-import App from './Containers/App.jsx';
+import App from './Components/App.jsx';
 import Reducers from './Reducers/index';
 
 const store = createStore(
