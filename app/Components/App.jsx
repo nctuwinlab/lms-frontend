@@ -2,18 +2,22 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { clickEvt, asideToggle } from '../Actions/action'
 
-import List from '../Components/List.jsx';
-import LoginForm from '../Components/LoginForm.jsx';
+import LoginForm from './Login/LoginForm.jsx';
 
 class App extends Component{
     render(){
-        const { clickEvt, asideOut, items, asideStatus: {asideClass} } = this.props;
+        const { clickEvt, asideToggle, items, 
+            asideStatus: { 
+                asideClass, 
+                firstOpened,
+                firstOpenedAnime
+            }
+        } = this.props;
         return (
             <div>
-                <List items={items}/>
-                <LoginForm asideClass={asideClass}/>
+                <LoginForm />
                 <button className="btn-floating btn-large waves-effect waves-light red login-btn" 
-                    onClick={asideOut}>click</button>
+                    onClick={asideToggle}>click</button>
             </div>
         );    
     }
@@ -31,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
         clickEvt: () => {
             dispatch(clickEvt('REDUX RRRRR HAHA'));
         },
-        asideOut: ()=>{
+        asideToggle: ()=>{
             dispatch(asideToggle());
         }
     }

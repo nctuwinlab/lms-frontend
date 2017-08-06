@@ -7,7 +7,7 @@ const BUILD_DIR = path.resolve(__dirname, "build");
 let config = {
     context: APP_DIR,
     entry: {
-        index: './index.jsx',
+        index: ['babel-polyfill', './index.jsx'],
     },
     output: {
         filename: '[name].bundle.js',

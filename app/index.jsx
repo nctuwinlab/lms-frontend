@@ -6,8 +6,6 @@ import { Router, Route } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 
-import './materialize-css/js/materialize.min.js';
-import './materialize-css/css/materialize.min.css';
 import './css/index.scss';
 
 import App from './Containers/App.jsx';
@@ -19,8 +17,17 @@ const store = createStore(
             items: [],
             asideStatus: {
                 opened: false,
-                asideClass: '',
-            }
+                asideClass: 'form-in',
+                firstOpened: false,
+                firstOpenedAnime: false,
+                borderClass: ['left', 'top', 'right', 'bottom', 'middle'].map( p => {
+                    return `login-input-border-${p} login-input-border`;
+                }),
+                maskClass: 'mask',
+                labelClass: '',
+                inputMaskClass: 'input-mask',
+            },
+            isLogin: 'false',
         }
 );
 
