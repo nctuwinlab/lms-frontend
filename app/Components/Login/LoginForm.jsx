@@ -6,7 +6,7 @@ import LoginTable from './LoginTable.jsx';
 
 class LoginForm extends Component{
     render(){
-        const { asideClass, firstOpened, firstOpenedAnime } = this.props.asideStatus;
+        const { asideClass, firstOpened, firstOpenedAnime } = this.props.loginFormStatus;
         const { isLogin } = this.props;
         return (
             <aside className={asideClass}>
@@ -23,7 +23,7 @@ class LoginForm extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        asideStatus: state.asideStatus,
+        loginFormStatus: state.loginFormStatus,
         isLogin: state.isLogin
     }
 }

@@ -7,7 +7,7 @@ import LoginForm from './Login/LoginForm.jsx';
 class App extends Component{
     render(){
         const { clickEvt, asideToggle, items, 
-            asideStatus: { 
+            loginFormStatus: { 
                 asideClass, 
                 firstOpened,
                 firstOpenedAnime
@@ -26,7 +26,7 @@ class App extends Component{
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        asideStatus: state.asideStatus,
+        loginFormStatus: state.loginFormStatus,
     }
 }
 

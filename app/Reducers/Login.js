@@ -7,18 +7,18 @@ import {
     FORM_OUT
 } from '../Actions/action';
 
-function asideStatus(state = {}, action){
+function loginFormStatus(state = {}, action){
     switch(action.type){
         case ASIDE_TOGGLE:
             if(state.opened){
                 return Object.assign({}, state, {
                     opened: false,
-                    asideClass: 'form-in',
+                    asideClass: 'login-form form-in',
                 })
             } else {
                 return Object.assign({}, state, {
                     opened:  true,
-                    asideClass: 'form-out',
+                    asideClass: 'login-form form-out',
                     firstOpened: true
                 })
             }
@@ -64,5 +64,5 @@ function asideStatus(state = {}, action){
     }
 }
 
-export default asideStatus;
+export default loginFormStatus;
 
