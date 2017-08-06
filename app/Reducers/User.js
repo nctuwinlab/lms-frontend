@@ -1,12 +1,15 @@
-import { LOGIN, LOGOUT } from '../Actions/action';
+import { LOGIN, LOGOUT, LOGINPENDING } from '../Actions/action';
 
-function user(state = false, action){
+function user(state = '', action){
     switch(action.type){
         case LOGIN:
-            return true;
+            return 'true';
             break;
         case LOGOUT:
-            return false;
+            return 'false';
+            break;
+        case LOGINPENDING:
+            return 'pending';
             break;
         default:
             return state;

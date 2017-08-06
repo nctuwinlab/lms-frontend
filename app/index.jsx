@@ -17,7 +17,7 @@ const store = createStore(
             items: [],
             asideStatus: {
                 opened: false,
-                asideClass: '',
+                asideClass: 'form-in',
                 firstOpened: false,
                 firstOpenedAnime: false,
                 borderClass: ['left', 'top', 'right', 'bottom', 'middle'].map( p => {
@@ -25,9 +25,9 @@ const store = createStore(
                 }),
                 maskClass: 'mask',
                 labelClass: '',
-                inputMaskClass: 'input-mask'
+                inputMaskClass: 'input-mask',
             },
-            isLogin: false,
+            isLogin: 'false',
         }
 );
 

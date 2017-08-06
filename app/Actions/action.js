@@ -3,6 +3,7 @@ export const ASIDE_TOGGLE = 'ASIDE_TOGGLE';
 export const ASIDE_OPEN_END = 'ASIDE_OPEN_END';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const LOGINPENDING = 'LOGINPENDING';
 export const BORDER_IN = 'BORDER_IN';
 export const BORDER_OUT = 'BORDER_OUT';
 export const FORM_IN = 'FORM_IN';
@@ -26,6 +27,10 @@ export function login(){
 
 export function logout(){
     return {type: LOGOUT};
+}
+
+export function pending(){
+    return {type: LOGINPENDING};
 }
 
 export function border(dir, pos){

@@ -7,22 +7,23 @@
 
 aside{
     position: fixed;
-    width: 0;
-    height: 0;
-    right: 0;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
     top: 0;
-    background-color: black;
-    
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+
     &.form-in{
         transition: all 1s ease 0s;
-        width: 0;
-        height: 0;
+        border-radius: 100%;
+        transform: scale(0) rotate3d(1, 2, -1, 195deg);
     }
     
     &.form-out{
         transition: all 1s ease 0s;
-        width: 100vw;
-        height: 100vh;
+        border-radius: 0;
+        transform: scale(1) rotate3d(0, 0, 0, 0);
     }
 
     canvas{

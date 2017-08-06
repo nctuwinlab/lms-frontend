@@ -55,7 +55,7 @@ function asideStatus(state = {}, action){
             return Object.assign({}, state, {
                 maskClass: 'mask',
                 labelClass: '',
-                inputMaskClass: 'input-mask'
+                inputMaskClass: 'input-mask',
             })
             break;
         default:

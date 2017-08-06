@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { login, border, form } from '../Actions/action';
+import { login, pending, border, form } from '../Actions/action';
 
 class LoginTable extends Component{
     
@@ -15,10 +15,12 @@ class LoginTable extends Component{
         return (
             <form>
                 {
-                    borderClass.map((c) => {
+                    borderClass.map((c, i) => {
                         return (
                             <div 
-                                className={c}>
+                                className={c}
+                                key={i}
+                            >
                             </div>)
                     })
                 }
@@ -27,7 +29,7 @@ class LoginTable extends Component{
                         <div className={maskClass}></div>
                         Username
                     </label>
-                    <input  type="text" name="username" className={labelClass}/>
+                    <input  type="text" name="username" className={labelClass} required />
                     <div className={inputMaskClass}></div>
                 </div>
                 <div className="login-input">
@@ -35,13 +37,15 @@ class LoginTable extends Component{
                         <div className={maskClass}></div>
                         Password
                     </label>
-                    <input type="password" name="password" className={labelClass}/>
+                    <input type="password" name="password" className={labelClass} required />
                     <div className={inputMaskClass}></div>
                 </div>
-                <a className="waves-effect waves-light btn" onClick={this.props.login}>
-                    <i className="material-icons right">exit_to_app</i>
-                    login
-                </a>
+                {   'false' != this.props.isLogin ? null :
+                    <a className="waves-effect waves-light btn teal darken-4" onClick={this.props.login}>
+                        <i className="material-icons right">exit_to_app</i>
+                        login
+                    </a>
+                }
             </form>
         )
     }
@@ -49,7 +53,8 @@ class LoginTable extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        asideStatus:  state.asideStatus
+        asideStatus:  state.asideStatus,
+        isLogin: state.isLogin
     }
 }
 
@@ -57,7 +62,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         login: (e) => {
             e.preventDefault();
-            dispatch(login());
+            dispatch(border('out', ['left', 'top', 'right', 'bottom', 'middle']));
+            dispatch(form('out'));
+            dispatch(pending());
+
+            setTimeout(()=>{
+                dispatch(login());
+            }, 2000);
         },
         formChange: (dir) => {
             dispatch(border(dir, ['left', 'top', 'right', 'bottom', 'middle']));
