@@ -14,18 +14,28 @@ class Nav extends Component{
         }
         return (
             <nav style={{background: navStatus[id].color}}>
+                {
+                    navStatus.map(item => {
+                        return (
+                            <div className={`nav-bg ${item.status}`} 
+                             style={{
+                                background: `linear-gradient(to right, ${item.color}, transparent)`
+                             }}>
+                                <div className="nav-num">
+                                    <span>0</span>
+                                    <span>{item.id+1}</span>
+                                </div>
+                                <div className="nav-img"></div>
+                            </div>
+                        )
+                    })
+                }
                 <ul>
                 {
                     navStatus.map(item => {
                         return (
                             <li key={item.id} >
 
-                                <div className={`nav-bg ${item.status}`} 
-                                 style={{
-                                    background: `linear-gradient(to right, ${item.color}, transparent)`
-                                 }}>
-                                    <div className="nav-img"></div>
-                                </div>
                                 <div className="wrapper"
                                     onMouseEnter={e => {
                                     this.onMouseEnterHandler(e, item.id);
