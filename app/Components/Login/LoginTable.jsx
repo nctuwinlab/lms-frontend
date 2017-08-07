@@ -11,7 +11,7 @@ class LoginTable extends Component{
     }
 
     render(){
-        let { maskClass, labelClass, borderClass, inputMaskClass } = this.props.asideStatus;
+        let { maskClass, labelClass, borderClass, inputMaskClass } = this.props.loginFormStatus;
         return (
             <form>
                 {
@@ -53,7 +53,7 @@ class LoginTable extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        asideStatus:  state.asideStatus,
+        loginFormStatus:  state.loginFormStatus,
         isLogin: state.isLogin
     }
 }
