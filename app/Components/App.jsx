@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { clickEvt, asideToggle } from '../Actions/action'
+import { asideToggle } from '../Actions/action'
 
 import LoginForm from './Login/LoginForm.jsx';
+import Nav from './Nav/Nav.jsx';
 
 class App extends Component{
     render(){
-        const { clickEvt, asideToggle, items, 
+        const { asideToggle, 
             loginFormStatus: { 
                 asideClass, 
                 firstOpened,
@@ -15,6 +16,7 @@ class App extends Component{
         } = this.props;
         return (
             <div>
+                <Nav />
                 <LoginForm />
                 <button className="btn-floating btn-large waves-effect waves-light red login-btn" 
                     onClick={asideToggle}>click</button>
@@ -25,16 +27,12 @@ class App extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        items: state.items,
         loginFormStatus: state.loginFormStatus,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        clickEvt: () => {
-            dispatch(clickEvt('REDUX RRRRR HAHA'));
-        },
         asideToggle: ()=>{
             dispatch(asideToggle());
         }

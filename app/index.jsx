@@ -11,6 +11,15 @@ import './css/index.scss';
 import App from './Components/App.jsx';
 import Reducers from './Reducers/index';
 
+const borderPos = ['left', 'top', 'right', 'bottom', 'middle'];
+const navItems = [
+    {name: 'home', color: 'red'},
+    {name: 'member', color: 'blue'}, 
+    {name: 'food', color: 'orange'}, 
+    {name: 'meeting', color: 'green'}, 
+    {name: 'aboutus', color: 'gray'}
+];
+
 const store = createStore(
         Reducers,
         {
@@ -19,13 +28,22 @@ const store = createStore(
                 asideClass: 'login-form form-in',
                 firstOpened: false,
                 firstOpenedAnime: false,
-                borderClass: ['left', 'top', 'right', 'bottom', 'middle'].map( p => {
+                borderClass: borderPos.map( p => {
                     return `login-input-border-${p} login-input-border`;
                 }),
                 maskClass: 'mask',
                 labelClass: '',
                 inputMaskClass: 'input-mask',
+                
             },
+            navStatus: navItems.map( (item, index) => {
+                return {
+                    name: item.name,
+                    color: item.color,
+                    id: index,
+                    status: 'pre',
+                }
+            }),
             isLogin: 'false',
         }
 );
