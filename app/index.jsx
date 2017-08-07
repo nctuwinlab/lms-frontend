@@ -14,10 +14,9 @@ import Reducers from './Reducers/index';
 const store = createStore(
         Reducers,
         {
-            items: [],
-            asideStatus: {
+            loginFormStatus: {
                 opened: false,
-                asideClass: 'form-in',
+                asideClass: 'login-form form-in',
                 firstOpened: false,
                 firstOpenedAnime: false,
                 borderClass: ['left', 'top', 'right', 'bottom', 'middle'].map( p => {

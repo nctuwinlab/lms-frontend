@@ -8,6 +8,7 @@ import { TweenLite } from 'gsap';
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 class LoginFormBg extends Component{
+
     render(){
         return (
             <div>
@@ -69,8 +70,10 @@ class LoginFormBg extends Component{
             circleNum = 1200;
         } else if(window.innerWidth < 1600 && window.innerWidth > 1200){
             circleNum = 800;
+        } else if(window.innerWidth < 1200 && window.innerWidth > 800){
+            circleNum = 400;
         } else {
-            circleNum = 600;
+            circleNum = 300;
         }
         for(let i=0; i<circleNum; i++) {
             let circle = new createjs.Shape();
@@ -117,9 +120,16 @@ class LoginFormBg extends Component{
 
     FormText(timing){
         let { textPixels, circles } = this;
+        this.minY = window.innerHeight;
         for(let i= 0, l=textPixels.length; i<l; i++) {
             circles[i].originX = textPixels[i].x;
             circles[i].originY = (window.innerHeight-300)/2 + textPixels[i].y;
+            if(circles[i].originY < this.minY){
+                this.minY = circles[i].originY;
+            }
+        }
+
+        for(let i= 0, l=textPixels.length; i<l; i++) {
             if('before' == timing)
                 this.BeforeLoginTween(circles[i]);
             else
@@ -171,7 +181,7 @@ class LoginFormBg extends Component{
         );
         let offsetY = (window.innerWidth - 300)/2;
         c.originY += (offsetY - c.originY)/5;
-        c.originY = c.originY - window.innerHeight * 0.4;
+        c.originY = c.originY - this.minY;
         c.originX += (window.innerWidth/2 - c.originX)/5;
 
         c.tween = TweenLite.to(
@@ -253,7 +263,10 @@ class LoginFormBg extends Component{
         for(let i=0, l=this.textPixels.length; i<l; i++){
             this.explode(this.circles[i])
         }
-        await delay(1000);
+        for(let i=this.textPixels; i<this.circles.length; i++){
+            circles[i].tween = TweenLite.to(circles[j], 0.4, {alpha: 0.2 + Math.random()*0.5});
+        }
+        await delay(800);
         this.CreateText('JUBEATWWW', window.innerWidth / 10, 'after');
         for(let i=this.textPixels; i<this.circles.length; i++){
             circles[j].tween = TweenLite.to(circles[j], 0.4, {alpha: 0.2});
