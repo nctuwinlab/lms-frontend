@@ -13,6 +13,7 @@ aside.login-form{
     top: 0;
     background-color: rgba(0, 0, 0, 0.85);
     overflow: hidden;
+    z-index: 3;
 
     &.form-in{
         transition: all 1s ease 0s;
