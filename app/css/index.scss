@@ -3,4 +3,13 @@
 body{
     @import './Nav/nav';
     @import './Login/login';
+    
+    section{
+        position: absolute;
+        width: 80vw;
+        height: 100vh;
+        right: 0;
+        top: 0;
+
+    }
 }

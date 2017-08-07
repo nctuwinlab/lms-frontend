@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {render} from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 
 import './css/index.scss';
@@ -19,6 +19,8 @@ const navItems = [
     {name: 'meeting', color: 'green'}, 
     {name: 'aboutus', color: 'gray'}
 ];
+
+const browserHistory = createBrowserHistory(); 
 
 const store = createStore(
         Reducers,
@@ -45,10 +47,12 @@ const store = createStore(
                 }
             }),
             isLogin: 'false',
-        }
+        },
+        applyMiddleware(routerMiddleware(browserHistory))
 );
 
-const history = syncHistoryWithStore(createBrowserHistory(), store);
+
+const history = syncHistoryWithStore(browserHistory, store);
 
 class Root extends Component{
     render(){

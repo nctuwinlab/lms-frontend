@@ -10,6 +10,7 @@ export const LOGOUT = 'LOGOUT';
 export const LOGINPENDING = 'LOGINPENDING';
 
 export const NAVHOVER = 'NAVHOVER';
+export const NAVLEAVE = 'NAVLEAVE';
 
 export function asideToggle(){
     return {type: ASIDE_TOGGLE};
@@ -47,5 +48,11 @@ export function navHover(id){
     return {
         type: NAVHOVER,
         id,
+    }
+}
+
+export function navLeave(){
+    return {
+        type: NAVLEAVE,
     }
 }

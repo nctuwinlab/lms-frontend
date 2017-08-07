@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { asideToggle } from '../Actions/action'
 
+import { Route, withRouter } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import LoginForm from './Login/LoginForm.jsx';
 import Nav from './Nav/Nav.jsx';
 
@@ -18,8 +21,13 @@ class App extends Component{
             <div>
                 <Nav />
                 <LoginForm />
+                <section>
+                    <Route path="/test" render={(props) =>{
+                        return <div>fuck this world</div>
+                    }} />
+                </section>
                 <button className="btn-floating btn-large waves-effect waves-light red login-btn" 
-                    onClick={asideToggle}>click</button>
+                    onClick={asideToggle}>login</button>
             </div>
         );    
     }
@@ -28,6 +36,7 @@ class App extends Component{
 const mapStateToProps = (state) => {
     return {
         loginFormStatus: state.loginFormStatus,
+        routing: state.routing
     }
 }
 
