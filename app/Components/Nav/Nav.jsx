@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { routerMiddleware, push } from 'react-router-redux';
 
 import { navHover, navLeave } from '../../Actions/action';
@@ -79,7 +79,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,    
-)(Nav);
+)(Nav));

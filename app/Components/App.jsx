@@ -8,6 +8,16 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import LoginForm from './Login/LoginForm.jsx';
 import Nav from './Nav/Nav.jsx';
 
+class test extends Component{
+    constructor(props){
+        super(props);
+        console.log('test created');
+    }
+    render(){
+        return <div>test</div>;
+    }
+}
+
 class App extends Component{
     render(){
         const { asideToggle, 
@@ -17,14 +27,13 @@ class App extends Component{
                 firstOpenedAnime
             }
         } = this.props;
+        console.log(this.props);
         return (
             <div>
                 <Nav />
                 <LoginForm />
                 <section>
-                    <Route path="/test" render={(props) =>{
-                        return <div>fuck this world</div>
-                    }} />
+                    <Route path="/test" component={test} />
                 </section>
                 <button className="btn-floating btn-large waves-effect waves-light red login-btn" 
                     onClick={asideToggle}>login</button>
@@ -48,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(App);
+)(App));

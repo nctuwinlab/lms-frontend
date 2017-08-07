@@ -3,8 +3,8 @@ import {render} from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
-import { createBrowserHistory } from 'history';
+import { syncHistoryWithStore, routerMiddleware, ConnectedRouter } from 'react-router-redux';
+import { createBrowserHistory, createHashHistory } from 'history';
 
 import './css/index.scss';
 
@@ -51,17 +51,14 @@ const store = createStore(
         applyMiddleware(routerMiddleware(browserHistory))
 );
 
-
-const history = syncHistoryWithStore(browserHistory, store);
-
 class Root extends Component{
     render(){
         return(
             <Provider store={store}>
-                <Router history={history}>
+                <ConnectedRouter history={browserHistory}>
                     <Route path="/" component={App}>
                     </Route>
-                </Router>
+                </ConnectedRouter>
             </Provider>    
         );
     }
