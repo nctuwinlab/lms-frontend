@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import Items from './Items';
-import asideStatus from './Aside';
+import loginFormStatus from './Login';
 import User from './User';
+import navStatus from './Nav';
 
 export default combineReducers({
-    items: Items,
     isLogin: User,
-    asideStatus,
+    loginFormStatus,
+    navStatus,
     routing: routerReducer,
 });
