@@ -3,22 +3,12 @@ import { connect } from 'react-redux';
 import { asideToggle } from '../Actions/action'
 
 import { Route, withRouter } from 'react-router-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import LoginForm from './Login/LoginForm.jsx';
 import Nav from './Nav/Nav.jsx';
 
-class test extends Component{
-    constructor(props){
-        super(props);
-        console.log('test created');
-    }
-    render(){
-        return <div>test</div>;
-    }
-}
-
 class App extends Component{
+
     render(){
         const { asideToggle, 
             loginFormStatus: { 
@@ -27,13 +17,18 @@ class App extends Component{
                 firstOpenedAnime
             }
         } = this.props;
+        
         console.log(this.props);
         return (
             <div>
                 <Nav />
                 <LoginForm />
-                <section>
-                    <Route path="/test" component={test} />
+                <section className={this.props.routeTransition}>
+                    {
+                        this.props.routePath.routes.map((route, index) => {
+                            return <Route key={index} path={route.pathname} component={route.component}/>
+                        })
+                    }
                 </section>
                 <button className="btn-floating btn-large waves-effect waves-light red login-btn" 
                     onClick={asideToggle}>login</button>
@@ -45,6 +40,8 @@ class App extends Component{
 const mapStateToProps = (state) => {
     return {
         loginFormStatus: state.loginFormStatus,
+        routeTransition: state.routeTransition,
+        routePath: state.routePath,
         routing: state.routing
     }
 }

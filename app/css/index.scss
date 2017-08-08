@@ -10,6 +10,16 @@ body{
         height: 100vh;
         right: 0;
         top: 0;
+        transition: all 0.5s ease-out;
 
+        &.out{
+            transform: rotate3d(0, 1, 0, 90deg);
+            opacity: 0;
+        }
+
+        &.in{
+            opacity: 1;
+            transform: rotate3d(0, 1, 0, 0deg);
+        }
     }
 }

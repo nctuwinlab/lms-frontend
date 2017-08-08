@@ -1,15 +1,17 @@
 import React, {Component, PropTypes} from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { syncHistoryWithStore, routerMiddleware, ConnectedRouter } from 'react-router-redux';
+import { Route } from 'react-router-dom';
+import { routerMiddleware, ConnectedRouter } from 'react-router-redux';
 import { createBrowserHistory, createHashHistory } from 'history';
 
 import './css/index.scss';
 
 import App from './Components/App.jsx';
 import Reducers from './Reducers/index';
+
+import routes from './Components/Routes/routes';
 
 const borderPos = ['left', 'top', 'right', 'bottom', 'middle'];
 const navItems = [
@@ -20,7 +22,9 @@ const navItems = [
     {name: 'aboutus', color: 'gray'}
 ];
 
-const browserHistory = createBrowserHistory(); 
+const browserHistory = createBrowserHistory({
+    basename: location.pathname  
+}); 
 
 const store = createStore(
         Reducers,
@@ -47,6 +51,11 @@ const store = createStore(
                 }
             }),
             isLogin: 'false',
+            routePath: {
+                curId: 0,
+                curPath: routes[0].pathname,
+                routes
+            }
         },
         applyMiddleware(routerMiddleware(browserHistory))
 );

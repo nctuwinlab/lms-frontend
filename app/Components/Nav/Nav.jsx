@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Link, withRouter } from 'react-router-dom';
-import { routerMiddleware, push } from 'react-router-redux';
+import { withRouter } from 'react-router-dom';
+import { push } from 'react-router-redux';
 
 import { navHover, navLeave } from '../../Actions/action';
+import { routeIn, routeOut, routeCh } from '../../Actions/action';
 
 
 class Nav extends Component{
@@ -34,7 +35,8 @@ class Nav extends Component{
                                     <div className="nav-img"></div>
                                 </div>
 
-                                <div className="wrapper" onClick={this.props.push}
+                                <div className="wrapper" 
+                                    onClick={this.props.push.bind(this, id, this.props.routePath)}
                                     onMouseEnter={e => {
                                     this.onMouseEnterHandler(e, item.id);
                                 }}>
@@ -59,6 +61,7 @@ class Nav extends Component{
 const mapStateToProps = (state) => {
     return {
         navStatus: state.navStatus,
+        routePath: state.routePath,
         routing: state.routing,
     }
 }
@@ -72,9 +75,17 @@ const mapDispatchToProps = (dispatch) => {
             console.log('leave');
             dispatch(navLeave());
         },
-        push: () => {
-            console.log('push');
-            dispatch(push('/test'));
+        push: (id, routePath) => {
+            if(id >=  routePath.routes.length){
+                id = 0;
+            }
+            dispatch(routeCh(id));
+            dispatch(navLeave());
+            dispatch(routeOut());
+            setTimeout(()=>{
+                dispatch(push(routePath.routes[id].pathname));
+                dispatch(routeIn());
+            }, 500);
         }
     }
 }

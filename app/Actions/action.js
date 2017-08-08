@@ -12,6 +12,11 @@ export const LOGINPENDING = 'LOGINPENDING';
 export const NAVHOVER = 'NAVHOVER';
 export const NAVLEAVE = 'NAVLEAVE';
 
+export const ROUTEIN = 'ROUTEIN';
+export const ROUTEOUT = 'ROUTEOUT';
+
+export const ROUTECH = 'ROUTECH';
+
 export function asideToggle(){
     return {type: ASIDE_TOGGLE};
 }
@@ -54,5 +59,24 @@ export function navHover(id){
 export function navLeave(){
     return {
         type: NAVLEAVE,
+    }
+}
+
+export function routeIn(){
+    return {
+        type: ROUTEIN
+    }
+}
+
+export function routeOut(){
+    return {
+        type: ROUTEOUT
+    }
+}
+
+export function routeCh(id){
+    return {
+        type: ROUTECH,
+        id
     }
 }
