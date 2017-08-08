@@ -1,4 +1,4 @@
-import { NAVHOVER } from '../Actions/action';
+import { NAVHOVER, NAVLEAVE } from '../Actions/action';
 
 export default function navStatus(state=[], action){
     switch(action.type){
@@ -10,6 +10,12 @@ export default function navStatus(state=[], action){
                     item.status = 'next';
                 else
                     item.status = 'cur';
+                return item;
+            });
+            break;
+        case NAVLEAVE:
+            return state.map(item => {
+                item.status = 'cur' == item.status?'pre':item.status;
                 return item;
             });
             break;
