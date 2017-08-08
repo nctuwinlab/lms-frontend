@@ -23,7 +23,7 @@ const navItems = [
 ];
 
 const browserHistory = createBrowserHistory({
-    basename: location.pathname  
+    basename: location.pathname+'#'
 }); 
 
 const store = createStore(
