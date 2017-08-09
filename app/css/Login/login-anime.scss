@@ -1,0 +1,198 @@
+@mixin login-anime{
+    .login-input-border{
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background:white;
+        border-radius: 25%;
+        transform: scale(0);
+
+        &.login-input-border-top{
+            top: 0;
+            left: 0;
+            transition: all 1.6s ease-out 0.5s;
+
+            &.in{
+                width: 100%;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+        }
+        &.login-input-border-bottom{
+            bottom: 0;
+            right: 0;
+            transition: all 1.6s ease-out 0.5s;
+            
+            &.in{
+                width: 100%;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+        }
+        &.login-input-border-left{
+            top: 10%;
+            left: 0;
+            transition: all 1s ease-out 0.7s;
+            
+            &.in{
+                height: 80%;
+                width: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+        }
+        &.login-input-border-middle{
+            left: 50%;
+            top: 10%;
+            transition: all 1s ease-out 0.9s;
+            
+            &.in{
+                height: 80%;
+                width: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+        }
+        &.login-input-border-right{
+            top: 10%;
+            right: 0;
+            transition: all 1s ease-out 1.1s;
+            
+            &.in{
+                height: 80%;
+                width: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+        }
+    }
+
+    .login-input{
+        width: 50%;
+        padding: 5%;
+        position: relative;
+
+        label{
+            position: relative;
+            font-size: 2rem;
+            transition: all 0.5s linear;
+            color: transparent;
+            
+            @keyframes textShow{
+                0%{
+                    color: transparent;
+                }
+                99%{
+                    color: transparent;
+                }
+                100%{
+                    color: #9e9e9e;
+                }
+            }
+            
+            &.in{
+                animation: textShow 0.2s linear 0s 1;
+                animation-fill-mode: forwards;
+            }
+            
+
+
+            .mask{
+                position: absolute;
+                width: 100%;
+                height: 0;
+                background: white;
+                z-index: 1;
+                top: 0;
+                transition: all 1s linear;
+                
+                @keyframes show{
+                    0%{
+                        top: 0;
+                        height: 0;
+                    }
+                    50%{
+                        top: 0;
+                        height: 100%;
+                    }
+                    100%{
+                        top: 100%;
+                        height: 0;
+                    }
+                }
+
+                &.in{
+                    animation: show 0.2s linear 0s 1;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+
+        input{
+            &[name=password], 
+            &[name=username]{
+                height: 2em;
+                color: white;
+                font-size: 3em;
+                text-align: center;
+                transition: all 0.5s linear;
+                visibility: hidden;
+
+                &.in{
+                    animation: inputShow 0.2s linear 0.3s 1;
+                    animation-fill-mode: forwards;
+                }
+                
+                @keyframes inputShow{
+                    0%{
+                        visibility: hidden;
+                    }
+                    99%{
+                        visibility: hidden;
+                    }
+                    100%{
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+
+        .input-mask{
+            position: absolute;
+            width: 80%;
+            height: 0;
+            top: 40%;
+            left: 10%;
+            background: white;
+            
+            @keyframes show{
+                0%{
+                    top: 40%;
+                    height: 0;
+                }
+                50%{
+                    top: 40%;
+                    height: 40%;
+                }
+                100%{
+                    top: 80%;
+                    height: 0;
+                }
+            }
+
+            &.in{
+                animation: show 0.2s linear 0.3s 1;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    .btn{
+        position: absolute;
+        bottom: -30%;
+        left: 30%;
+        width: 40%;
+    }
+}

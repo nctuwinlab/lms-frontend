@@ -1,0 +1,89 @@
+nav {
+    position: absolute;
+    width: 20vw;
+    height: 100vh;
+    transition: all 0.2s linear;
+
+    ul{
+        position: absolute;
+        li{
+            
+            width: 100%;
+            cursor: pointer;
+
+            .nav-bg{
+                position: absolute;
+                width: 80vw;
+                height: 100vh;
+                left: 20vw;
+                top: 0;
+                background-size: cover;
+                transition: all 0.2s linear;
+                opacity: 0;
+                transform-origin: 0 50%;
+                transform: scale(1.2);
+
+                &.pre{
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+
+                &.cur{
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                &.next{
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+                
+                &.pre > .nav-num span{
+                    transform: translate(0, -100%);
+                }
+
+                &.cur > .nav-num span{
+                    transform: translate(0, 0);
+                }
+
+                &.next > .nav-num span{
+                    transform: translate(0, 100%);
+                }
+                
+                .nav-num{
+                    position: absolute;
+                    display: flex;
+                    left: 0;
+                    bottom: 5%;
+                    height: 40%;
+                    width: 40%;
+                    overflow: hidden;
+
+                    span{
+                        font-family: 'Open Sans', 'Francois One', sans-serif;
+                        height: 100%;
+                        font-size: 16em;
+                        font-weight: bold;
+                        line-height: 1em;
+                        color: rgba(255, 255, 255, 0.5);
+                    }
+
+                    span:first-child{
+                        transition: all 0.2s ease-out;
+                    }
+                    span:last-child{
+                        transition: all 0.35s ease-out;
+                    }
+                }
+            }
+            .wrapper{
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+
+
+}
+
+
