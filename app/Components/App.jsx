@@ -26,7 +26,9 @@ class App extends Component{
                 <section className={this.props.routeTransition}>
                     {
                         this.props.routePath.routes.map((route, index) => {
-                            return <Route key={index} path={route.pathname} component={route.component}/>
+                            return 0 == index ? 
+                            <Route exact key={index} path={route.pathname} component={route.component}/> :
+                            <Route key={index} path={route.pathname} component={route.component}/>
                         })
                     }
                 </section>

@@ -15,20 +15,25 @@ nav {
                 height: 100vh;
                 left: 20vw;
                 top: 0;
+                background-size: cover;
                 transition: all 0.2s linear;
                 opacity: 0;
-                transform: scale(1);
+                transform-origin: 0 50%;
+                transform: scale(1.2);
 
                 &.pre{
                     opacity: 0;
+                    transform: scale(1.1);
                 }
 
                 &.cur{
                     opacity: 1;
+                    transform: scale(1);
                 }
 
                 &.next{
                     opacity: 0;
+                    transform: scale(1.1);
                 }
                 
                 &.pre > .nav-num span{
@@ -42,7 +47,7 @@ nav {
                 &.next > .nav-num span{
                     transform: translate(0, 100%);
                 }
-
+                
                 .nav-num{
                     position: absolute;
                     display: flex;

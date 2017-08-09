@@ -26,13 +26,18 @@ class Nav extends Component{
                             <li key={item.id} >
                                 <div className={`nav-bg ${item.status}`} 
                                  style={{
-                                    background: `linear-gradient(to right, ${item.color}, transparent)`
+                                    backgroundImage: 
+                                    `
+                                    linear-gradient(to right, 
+                                        ${item.color} 0%, 
+                                        ${item.color} 20%, 
+                                        transparent 100%),
+                                    url(${item.image})`
                                  }}>
                                     <div className="nav-num">
                                         <span>0</span>
                                         <span>{item.id+1}</span>
                                     </div>
-                                    <div className="nav-img"></div>
                                 </div>
 
                                 <div className="wrapper" 
