@@ -7,8 +7,10 @@ nav {
     ul{
         position: absolute;
         li{
-            width: 100%;
             
+            width: 100%;
+            cursor: pointer;
+
             .nav-bg{
                 position: absolute;
                 width: 80vw;
