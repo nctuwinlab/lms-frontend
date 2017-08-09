@@ -15,11 +15,30 @@ import routes from './Components/Routes/routes';
 
 const borderPos = ['left', 'top', 'right', 'bottom', 'middle'];
 const navItems = [
-    {name: 'home', color: 'red'},
-    {name: 'member', color: 'blue'}, 
-    {name: 'food', color: 'orange'}, 
-    {name: 'meeting', color: 'green'}, 
-    {name: 'aboutus', color: 'gray'}
+    {   name: 'home', 
+        color: 'red', 
+        image: 'https://static.pexels.com/photos/307847/pexels-photo-307847.jpeg'
+    },
+    {
+        name: 'member', 
+        color: 'blue', 
+        image: 'https://www.efsa.europa.eu/sites/default/files/All%20staff%20picture%20new.jpg'
+    }, 
+    {
+        name: 'food', 
+        color: 'orange', 
+        image: 'http://d3pah2c10lnl36.cloudfront.net/images/menu_detail_lunch_02_.jpg'
+    }, 
+    {
+        name: 'meeting', 
+        color: 'green', 
+        image: 'https://www.bsr.org/images/sized/images/thumbnails/2016-10-24-member-spotlight-axa-blog-thumb-400x300.jpg'
+    }, 
+    {
+        name: 'aboutus', 
+        color: 'gray', 
+        image: 'http://www.solutionsgranted.com/wp-content/uploads/2015/08/AdobeStock_69470996-About-Us.jpeg'
+    }
 ];
 
 const browserHistory = createBrowserHistory({
@@ -46,6 +65,7 @@ const store = createStore(
                 return {
                     name: item.name,
                     color: item.color,
+                    image: item.image,
                     id: index,
                     status: 'pre',
                 }

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Francois+One|Open+Sans');
 
 body{
+    overflow: hidden;
+
     @import './Nav/nav';
     @import './Login/login';
     
